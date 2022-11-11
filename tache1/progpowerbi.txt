@@ -1,0 +1,25 @@
+#supression des sommets predicats
+
+listeu=dataset["P"]
+dataset=dataset[-dataset["O"].isin(listeu)]
+
+dataset=dataset[-dataset["O"].str.match(".*www.w3.org.*")]
+
+#nettoyage des labels urls
+
+pat = r'.*\/(.)'
+dataset["S"]= dataset["S"].str.replace(pat,r'\1',regex=True)
+dataset["O"]= dataset["O"].str.replace(pat,r'\1',regex=True)
+
+dataset["O"]=dataset["O"].str.replace(".*#(.)",r'\1',regex=True)
+dataset["S"]=dataset["S"].str.replace(".*#(.)",r'\1',regex=True)
+
+lab=dataset[dataset["P"].isin(["http://www.w3.org/2000/01/rdf-schema#label","http://www.w3.org/2006/vcard/ns#fn"])]
+
+urls=lab["S"].tolist()
+labels=lab["O"].tolist()
+
+dataset=pandas.concat([lab, dataset]).drop_duplicates(keep=False)
+
+dataset=dataset.replace(urls,labels)
+

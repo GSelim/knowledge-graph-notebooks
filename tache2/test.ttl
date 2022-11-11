@@ -1,0 +1,20 @@
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://krono.act.uji.es/schemas/slodbi#User_Account> .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://www.w3.org/2000/01/rdf-schema#label> "010.bio" .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://krono.act.uji.es/schemas/slodbi#followers_count> "240"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://krono.act.uji.es/schemas/slodbi#follows> <http://krono.act.uji.es/schemas/slodbi#territorio_es> .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://krono.act.uji.es/schemas/slodbi#friends_count> "3032"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://krono.act.uji.es/schemas/slodbi#user_id> "711329345319649280" .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://krono.act.uji.es/schemas/slodbi#user_location> "Barcelona, Espa\u00F1a" .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://krono.act.uji.es/schemas/slodbi#user_url> "https://twitter.com/000010info" .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://krono.act.uji.es/schemas/slodbi#user_verified> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<http://krono.act.uji.es/schemas/slodbi#000010info> <http://www.w3.org/2000/01/rdf-schema#comment> "NaN"^^<http://www.w3.org/2001/XMLSchema#double> .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://krono.act.uji.es/schemas/slodbi#User_Account> .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://www.w3.org/2000/01/rdf-schema#label> "javier lorente" .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://krono.act.uji.es/schemas/slodbi#followers_count> "15"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://krono.act.uji.es/schemas/slodbi#follows> <http://krono.act.uji.es/schemas/slodbi#SEGITTUR> .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://krono.act.uji.es/schemas/slodbi#friends_count> "106"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://krono.act.uji.es/schemas/slodbi#user_id> "632872590" .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://krono.act.uji.es/schemas/slodbi#user_location> "Madrid, Comunidad de Madrid" .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://krono.act.uji.es/schemas/slodbi#user_url> "https://twitter.com/000javi000" .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://krono.act.uji.es/schemas/slodbi#user_verified> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<http://krono.act.uji.es/schemas/slodbi#000javi000> <http://www.w3.org/2000/01/rdf-schema#comment> "Service Through Frienship" .

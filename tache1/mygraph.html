@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 800px;
+            height: 800px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#31AC04", "id": "Alcal\u00e0 de Xivert", "label": "Alcal\u00e0 de Xivert", "shape": "dot", "title": "Alcal\u00e0 de Xivert"}, {"color": "#31AC04", "id": "Altura", "label": "Altura", "shape": "dot", "title": "Altura"}, {"color": "#31AC04", "id": "Bej\u00eds", "label": "Bej\u00eds", "shape": "dot", "title": "Bej\u00eds"}, {"color": "#31AC04", "id": "Benicarl\u00f3", "label": "Benicarl\u00f3", "shape": "dot", "title": "Benicarl\u00f3"}, {"color": "#31AC04", "id": "Benicasim", "label": "Benicasim", "shape": "dot", "title": "Benicasim"}, {"color": "#31AC04", "id": "Cabanes", "label": "Cabanes", "shape": "dot", "title": "Cabanes"}, {"color": "#31AC04", "id": "C\u00e0lig", "label": "C\u00e0lig", "shape": "dot", "title": "C\u00e0lig"}, {"color": "#31AC04", "id": "Moncofa", "label": "Moncofa", "shape": "dot", "title": "Moncofa"}, {"color": "#31AC04", "id": "Navajas", "label": "Navajas", "shape": "dot", "title": "Navajas"}, {"color": "#31AC04", "id": "Nules", "label": "Nules", "shape": "dot", "title": "Nules"}, {"color": "#31AC04", "id": "Oropesa del Mar", "label": "Oropesa del Mar", "shape": "dot", "title": "Oropesa del Mar"}, {"color": "#31AC04", "id": "Pe\u00f1\u00edscola", "label": "Pe\u00f1\u00edscola", "shape": "dot", "title": "Pe\u00f1\u00edscola"}, {"color": "#31AC04", "id": "Pobla de Benifass\u00e0, la", "label": "Pobla de Benifass\u00e0, la", "shape": "dot", "title": "Pobla de Benifass\u00e0, la"}, {"color": "#31AC04", "id": "San Jorge", "label": "San Jorge", "shape": "dot", "title": "San Jorge"}, {"color": "#31AC04", "id": "Segorbe", "label": "Segorbe", "shape": "dot", "title": "Segorbe"}, {"color": "#31AC04", "id": "T\u00edrig", "label": "T\u00edrig", "shape": "dot", "title": "T\u00edrig"}, {"color": "#31AC04", "id": "Torreblanca", "label": "Torreblanca", "shape": "dot", "title": "Torreblanca"}, {"color": "#31AC04", "id": "Villafranca del Cid", "label": "Villafranca del Cid", "shape": "dot", "title": "Villafranca del Cid"}, {"color": "#31AC04", "id": "Vinar\u00f2s", "label": "Vinar\u00f2s", "shape": "dot", "title": "Vinar\u00f2s"}, {"color": "#31AC04", "id": "Viver", "label": "Viver", "shape": "dot", "title": "Viver"}, {"color": "#31AC04", "id": "chilches", "label": "chilches", "shape": "dot", "title": "chilches"}, {"color": "#ADA373", "id": "LAS MORERAS AC", "label": "LAS MORERAS AC", "shape": "dot", "title": "LAS MORERAS AC"}, {"color": "#ADA373", "id": "RIBAMAR", "label": "RIBAMAR", "shape": "dot", "title": "RIBAMAR"}, {"color": "#ADA373", "id": "PLAYA TROPICANA", "label": "PLAYA TROPICANA", "shape": "dot", "title": "PLAYA TROPICANA"}, {"color": "#ADA373", "id": "LOS OLIVOS CAMPING PARK", "label": "LOS OLIVOS CAMPING PARK", "shape": "dot", "title": "LOS OLIVOS CAMPING PARK"}, {"color": "#ADA373", "id": "CAMPING MUNICIPAL", "label": "CAMPING MUNICIPAL", "shape": "dot", "title": "CAMPING MUNICIPAL"}, {"color": "#ADA373", "id": "LOS CLOTICOS", "label": "LOS CLOTICOS", "shape": "dot", "title": "LOS CLOTICOS"}, {"color": "#ADA373", "id": "ALEGRIA DEL MAR", "label": "ALEGRIA DEL MAR", "shape": "dot", "title": "ALEGRIA DEL MAR"}, {"color": "#ADA373", "id": "TAURO", "label": "TAURO", "shape": "dot", "title": "TAURO"}, {"color": "#ADA373", "id": "AZAHAR", "label": "AZAHAR", "shape": "dot", "title": "AZAHAR"}, {"color": "#ADA373", "id": "GRAN AVENIDA", "label": "GRAN AVENIDA", "shape": "dot", "title": "GRAN AVENIDA"}, {"color": "#ADA373", "id": "FLORIDA", "label": "FLORIDA", "shape": "dot", "title": "FLORIDA"}, {"color": "#ADA373", "id": "BONTERRA", "label": "BONTERRA", "shape": "dot", "title": "BONTERRA"}, {"color": "#ADA373", "id": "RIBERAMAR", "label": "RIBERAMAR", "shape": "dot", "title": "RIBERAMAR"}, {"color": "#ADA373", "id": "CAMPING TORRE LA SAL MARIA", "label": "CAMPING TORRE LA SAL MARIA", "shape": "dot", "title": "CAMPING TORRE LA SAL MARIA"}, {"color": "#ADA373", "id": "BRAVOPLAYA", "label": "BRAVOPLAYA", "shape": "dot", "title": "BRAVOPLAYA"}, {"color": "#ADA373", "id": "CAMPING TORRE LA SAL", "label": "CAMPING TORRE LA SAL", "shape": "dot", "title": "CAMPING TORRE LA SAL"}, {"color": "#ADA373", "id": "CAMPING L\u0027ORANGERAIE", "label": "CAMPING L\u0027ORANGERAIE", "shape": "dot", "title": "CAMPING L\u0027ORANGERAIE"}, {"color": "#ADA373", "id": "CAMPING MONMAR", "label": "CAMPING MONMAR", "shape": "dot", "title": "CAMPING MONMAR"}, {"color": "#ADA373", "id": "LOS NARANJOS", "label": "LOS NARANJOS", "shape": "dot", "title": "LOS NARANJOS"}, {"color": "#ADA373", "id": "ALTOMIRA", "label": "ALTOMIRA", "shape": "dot", "title": "ALTOMIRA"}, {"color": "#ADA373", "id": "COSTA DE LEVANTE", "label": "COSTA DE LEVANTE", "shape": "dot", "title": "COSTA DE LEVANTE"}, {"color": "#ADA373", "id": "KIVU", "label": "KIVU", "shape": "dot", "title": "KIVU"}, {"color": "#ADA373", "id": "DIDOTA", "label": "DIDOTA", "shape": "dot", "title": "DIDOTA"}, {"color": "#ADA373", "id": "VORAMAR", "label": "VORAMAR", "shape": "dot", "title": "VORAMAR"}, {"color": "#ADA373", "id": "OASIS", "label": "OASIS", "shape": "dot", "title": "OASIS"}, {"color": "#ADA373", "id": "EL CID", "label": "EL CID", "shape": "dot", "title": "EL CID"}, {"color": "#ADA373", "id": "EL EDEN", "label": "EL EDEN", "shape": "dot", "title": "EL EDEN"}, {"color": "#ADA373", "id": "VIZMAR", "label": "VIZMAR", "shape": "dot", "title": "VIZMAR"}, {"color": "#ADA373", "id": "LOS PINOS", "label": "LOS PINOS", "shape": "dot", "title": "LOS PINOS"}, {"color": "#ADA373", "id": "FERRER", "label": "FERRER", "shape": "dot", "title": "FERRER"}, {"color": "#ADA373", "id": "SOL D\u0027OR", "label": "SOL D\u0027OR", "shape": "dot", "title": "SOL D\u0027OR"}, {"color": "#ADA373", "id": "SPA NATURA RESORT", "label": "SPA NATURA RESORT", "shape": "dot", "title": "SPA NATURA RESORT"}, {"color": "#ADA373", "id": "LA VOLTA", "label": "LA VOLTA", "shape": "dot", "title": "LA VOLTA"}, {"color": "#ADA373", "id": "LA TINENCA-MOLI L\u0027ABAD", "label": "LA TINENCA-MOLI L\u0027ABAD", "shape": "dot", "title": "LA TINENCA-MOLI L\u0027ABAD"}, {"color": "#ADA373", "id": "MAESTRAT PARK", "label": "MAESTRAT PARK", "shape": "dot", "title": "MAESTRAT PARK"}, {"color": "#ADA373", "id": "MONTE SAN BLAS", "label": "MONTE SAN BLAS", "shape": "dot", "title": "MONTE SAN BLAS"}, {"color": "#ADA373", "id": "ZIELO DE LEVANTE", "label": "ZIELO DE LEVANTE", "shape": "dot", "title": "ZIELO DE LEVANTE"}, {"color": "#ADA373", "id": "TORRENOSTRA", "label": "TORRENOSTRA", "shape": "dot", "title": "TORRENOSTRA"}, {"color": "#ADA373", "id": "LLOSAR", "label": "LLOSAR", "shape": "dot", "title": "LLOSAR"}, {"color": "#ADA373", "id": "CALA PUNTAL", "label": "CALA PUNTAL", "shape": "dot", "title": "CALA PUNTAL"}, {"color": "#ADA373", "id": "VINAROS", "label": "VINAROS", "shape": "dot", "title": "VINAROS"}, {"color": "#ADA373", "id": "VILLA DE VIVER", "label": "VILLA DE VIVER", "shape": "dot", "title": "VILLA DE VIVER"}, {"color": "#ADA373", "id": "MEDITERRANEO", "label": "MEDITERRANEO", "shape": "dot", "title": "MEDITERRANEO"}, {"color": "#BAE1D5", "id": "http://krono.act.uji.es/schemas/slodbi#hotel", "label": "http://krono.act.uji.es/schemas/slodbi#hotel", "shape": "dot", "title": "http://krono.act.uji.es/schemas/slodbi#hotel"}]);
+        edges = new vis.DataSet([{"from": "Alcal\u00e0 de Xivert", "to": "LAS MORERAS AC"}, {"from": "LAS MORERAS AC", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Alcal\u00e0 de Xivert", "to": "RIBAMAR"}, {"from": "RIBAMAR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Alcal\u00e0 de Xivert", "to": "PLAYA TROPICANA"}, {"from": "PLAYA TROPICANA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Alcal\u00e0 de Xivert", "to": "LOS OLIVOS CAMPING PARK"}, {"from": "LOS OLIVOS CAMPING PARK", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Altura", "to": "CAMPING MUNICIPAL"}, {"from": "CAMPING MUNICIPAL", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Bej\u00eds", "to": "LOS CLOTICOS"}, {"from": "LOS CLOTICOS", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Benicarl\u00f3", "to": "ALEGRIA DEL MAR"}, {"from": "ALEGRIA DEL MAR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Benicasim", "to": "TAURO"}, {"from": "TAURO", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Benicasim", "to": "AZAHAR"}, {"from": "AZAHAR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Benicasim", "to": "GRAN AVENIDA"}, {"from": "GRAN AVENIDA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Benicasim", "to": "FLORIDA"}, {"from": "FLORIDA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Benicasim", "to": "BONTERRA"}, {"from": "BONTERRA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Cabanes", "to": "RIBERAMAR"}, {"from": "RIBERAMAR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Cabanes", "to": "CAMPING TORRE LA SAL MARIA"}, {"from": "CAMPING TORRE LA SAL MARIA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Cabanes", "to": "BRAVOPLAYA"}, {"from": "BRAVOPLAYA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Cabanes", "to": "CAMPING TORRE LA SAL"}, {"from": "CAMPING TORRE LA SAL", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "C\u00e0lig", "to": "CAMPING L\u0027ORANGERAIE"}, {"from": "CAMPING L\u0027ORANGERAIE", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Moncofa", "to": "CAMPING MONMAR"}, {"from": "CAMPING MONMAR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Moncofa", "to": "LOS NARANJOS"}, {"from": "LOS NARANJOS", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Navajas", "to": "ALTOMIRA"}, {"from": "ALTOMIRA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Nules", "to": "COSTA DE LEVANTE"}, {"from": "COSTA DE LEVANTE", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Oropesa del Mar", "to": "KIVU"}, {"from": "KIVU", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Oropesa del Mar", "to": "DIDOTA"}, {"from": "DIDOTA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Oropesa del Mar", "to": "VORAMAR"}, {"from": "VORAMAR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Oropesa del Mar", "to": "OASIS"}, {"from": "OASIS", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pe\u00f1\u00edscola", "to": "EL CID"}, {"from": "EL CID", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pe\u00f1\u00edscola", "to": "EL EDEN"}, {"from": "EL EDEN", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pe\u00f1\u00edscola", "to": "VIZMAR"}, {"from": "VIZMAR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pe\u00f1\u00edscola", "to": "LOS PINOS"}, {"from": "LOS PINOS", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pe\u00f1\u00edscola", "to": "FERRER"}, {"from": "FERRER", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pe\u00f1\u00edscola", "to": "SOL D\u0027OR"}, {"from": "SOL D\u0027OR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pe\u00f1\u00edscola", "to": "SPA NATURA RESORT"}, {"from": "SPA NATURA RESORT", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pe\u00f1\u00edscola", "to": "LA VOLTA"}, {"from": "LA VOLTA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Pobla de Benifass\u00e0, la", "to": "LA TINENCA-MOLI L\u0027ABAD"}, {"from": "LA TINENCA-MOLI L\u0027ABAD", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "San Jorge", "to": "MAESTRAT PARK"}, {"from": "MAESTRAT PARK", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Segorbe", "to": "MONTE SAN BLAS"}, {"from": "MONTE SAN BLAS", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "T\u00edrig", "to": "ZIELO DE LEVANTE"}, {"from": "ZIELO DE LEVANTE", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Torreblanca", "to": "TORRENOSTRA"}, {"from": "TORRENOSTRA", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Villafranca del Cid", "to": "LLOSAR"}, {"from": "LLOSAR", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Vinar\u00f2s", "to": "CALA PUNTAL"}, {"from": "CALA PUNTAL", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Vinar\u00f2s", "to": "VINAROS"}, {"from": "VINAROS", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "Viver", "to": "VILLA DE VIVER"}, {"from": "VILLA DE VIVER", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}, {"from": "chilches", "to": "MEDITERRANEO"}, {"from": "MEDITERRANEO", "to": "http://krono.act.uji.es/schemas/slodbi#hotel"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

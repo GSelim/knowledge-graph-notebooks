@@ -1,0 +1,119 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh:	<http://www.w3.org/ns/shacl#> .
+@prefix esadm: <http://vocab.linkeddata.es/datosabiertos/def/sector-publico/territorio#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix : <http://krono.act.uji.es/schemas/slodbi#> .
+
+:entidad-turistica a rdf:Class .
+
+:hotel a :entidad-turistica .
+:albergue a :entidad-turistica .
+:camping a :entidad-turistica .
+:empresa-turismo-activo a :entidad-turistica .
+
+:categoria-alojamiento a rdf:Property .
+:habitaciones a rdf:Property .
+:plazas a rdf:Property .
+:localidad a rdf:Property .
+:ubicacion a rdf:Property .
+:wd-entity a rdf:Property .
+:tiene-infraestructura-turistica a rdf:Property .
+:has-prov a rdf:Property .
+
+:Comunidad_Valenciana a  esadm:Autonomia .
+:Plana_Baja a esadm:Comarca .
+:Castellon a esadm:Provincia .
+
+:Municipio-shape
+    a sh:NodeShape ;
+    sh:targetClass esadm:Municipio;
+    sh:property [
+        sh:path rdfs:label;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+    ];
+    sh:property [
+        sh:path :num-apartamentos-estandar;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+    ];
+    sh:property [
+        sh:path :plazas-apartamentos-estandar;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+    ];
+    sh:property [
+        sh:path :tiene-hoteles;
+        sh:class :hotel;
+        sh:nodeKind sh:IRI;
+    ];
+    sh:property [
+        sh:path :tiene-albergues;
+        sh:class :albergue;
+        sh:nodeKind sh:IRI;
+    ];
+    sh:property [
+        sh:path :tiene-empresas-de-turismo-activo ;
+        sh:class :empresa-turismo-activo;
+        sh:nodeKind sh:IRI;
+    ]; 
+    sh:property [
+        sh:path :tiene-camping;
+        sh:class :camping;
+        sh:nodeKind sh:IRI;
+    ]; 
+    sh:property [
+        sh:path :wd-entity;
+        sh:nodeKind sh:IRI;
+    ];
+    sh:property [
+        sh:path esadm:autonomia;
+        sh:class esadm:ComunidadAutonoma;
+        sh:nodeKind sh:IRI;
+    ];
+    sh:property [
+        sh:path esadm:comarca;
+        sh:class esadm:Comarca;
+        sh:nodekind sh:IRI;
+    ];
+    sh:property [
+        sh:path esadm:provincia;
+        sh:class esadm:Provincia;
+        sh:nodekind sh:IRI;
+    ];
+    sh:property [
+        sh:path owl:sameAs;
+        sh:nodekind sh:IRI;
+    ];
+    sh:property [
+        sh:path :has-prov;
+        sh:class prov:Entity;
+    ];
+.
+
+:Albergue-shape 
+    a sh:NodeShape ;
+    sh:targetClass :albergue;
+    sh:property [
+        sh:path :categoria-alojamiento;
+        sh:datatype xsd:string;
+        sh:pattern "E";
+    ];
+.
+
+:Hotel-shape 
+    a sh:NodeShape ;
+    sh:targetClass :hotel;
+    sh:property [
+        sh:path :categoria-alojamiento;
+        sh:datatype xsd:string;
+        sh:pattern "^(1|2|3|4|5)e?$";
+    ];
+.
+
